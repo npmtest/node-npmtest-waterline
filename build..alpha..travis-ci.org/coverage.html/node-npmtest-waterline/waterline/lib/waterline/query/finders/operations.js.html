@@ -1,0 +1,2405 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-waterline/waterline/lib/waterline/query/finders/operations.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-waterline">npmtest-waterline (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-waterline/waterline/lib/waterline/query/finders/operations.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">7.63% <small>(19 / 249)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 100)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.26% <small>(19 / 230)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-waterline/waterline/lib/waterline/query/finders/</a> &#187; operations.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+/**
+ * Module Dependencies
+ */
+&nbsp;
+var _ = require('lodash');
+var async = require('async');
+var utils = require('../../utils/helpers');
+var normalize = require('../../utils/normalize');
+var hasOwnProperty = utils.object.hasOwnProperty;
+&nbsp;
+/**
+ * Builds up a set of operations to perform based on search criteria.
+ *
+ * This allows the ability to do cross-adapter joins as well as fake joins
+ * on adapters that haven't implemented the join interface yet.
+ */
+&nbsp;
+var Operations = module.exports = <span class="fstat-no" title="function not covered" >function(context, criteria, parent) {</span>
+&nbsp;
+  // Build up a cache
+<span class="cstat-no" title="statement not covered" >  this.cache = {};</span>
+&nbsp;
+  // Set context
+<span class="cstat-no" title="statement not covered" >  this.context = context;</span>
+&nbsp;
+  // Set criteria
+<span class="cstat-no" title="statement not covered" >  this.criteria = criteria;</span>
+&nbsp;
+  // Set parent
+<span class="cstat-no" title="statement not covered" >  this.parent = parent;</span>
+&nbsp;
+  // Hold a default value for pre-combined results (native joins)
+<span class="cstat-no" title="statement not covered" >  this.preCombined = false;</span>
+&nbsp;
+  // Seed the Cache
+<span class="cstat-no" title="statement not covered" >  this._seedCache();</span>
+&nbsp;
+  // Build Up Operations
+<span class="cstat-no" title="statement not covered" >  this.operations = this._buildOperations();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+&nbsp;
+/*
+ ***********************************************************************************
+ * PUBLIC METHODS
+ ***********************************************************************************/
+&nbsp;
+&nbsp;
+/**
+ * Run Operations
+ *
+ * Execute a set of generated operations returning an array of results that can
+ * joined in-memory to build out a valid results set.
+ *
+ * @param {Function} cb
+ * @api public
+ */
+&nbsp;
+Operations.prototype.run = <span class="fstat-no" title="function not covered" >function run(cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+  // Grab the parent operation, it will always be the very first operation
+<span class="cstat-no" title="statement not covered" >  var parentOp = this.operations.shift();</span>
+&nbsp;
+  // Run The Parent Operation
+<span class="cstat-no" title="statement not covered" >  this._runOperation(parentOp.collection, parentOp.method, parentOp.criteria, <span class="fstat-no" title="function not covered" >function(err, results) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+&nbsp;
+    // Set the cache values
+<span class="cstat-no" title="statement not covered" >    self.cache[parentOp.collection] = results;</span>
+&nbsp;
+    // If results are empty, or we're already combined, nothing else to so do return
+<span class="cstat-no" title="statement not covered" >    if (!results || self.preCombined) <span class="cstat-no" title="statement not covered" >return cb(null, { combined: true, cache: self.cache });</span></span>
+&nbsp;
+    // Run child operations and populate the cache
+<span class="cstat-no" title="statement not covered" >    self._execChildOpts(results, <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(null, { combined: self.preCombined, cache: self.cache });</span>
+    });
+&nbsp;
+  });
+&nbsp;
+};
+&nbsp;
+&nbsp;
+/*
+ ***********************************************************************************
+ * PRIVATE METHODS
+ ***********************************************************************************/
+&nbsp;
+&nbsp;
+/**
+ * Seed Cache with empty values.
+ *
+ * For each Waterline Collection set an empty array of values into the cache.
+ *
+ * @api private
+ */
+&nbsp;
+Operations.prototype._seedCache = <span class="fstat-no" title="function not covered" >function _seedCache() {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+  // Fill the cache with empty values for each collection
+<span class="cstat-no" title="statement not covered" >  Object.keys(this.context.waterline.schema).forEach(<span class="fstat-no" title="function not covered" >function(key) {</span></span>
+<span class="cstat-no" title="statement not covered" >    self.cache[key] = [];</span>
+  });
+};
+&nbsp;
+/**
+ * Build up the operations needed to perform the query based on criteria.
+ *
+ * @return {Array}
+ * @api private
+ */
+&nbsp;
+Operations.prototype._buildOperations = <span class="fstat-no" title="function not covered" >function _buildOperations() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var operations = [];</span>
+&nbsp;
+  // Check if joins were used, if not only a single operation is needed on a single connection
+<span class="cstat-no" title="statement not covered" >  if (!hasOwnProperty(this.criteria, 'joins')) {</span>
+&nbsp;
+    // Grab the collection
+<span class="cstat-no" title="statement not covered" >    var collection = this.context.waterline.collections[this.context.identity];</span>
+&nbsp;
+    // Find the name of the connection to run the query on using the dictionary
+<span class="cstat-no" title="statement not covered" >    var connectionName = collection.adapterDictionary[this.parent];</span>
+<span class="cstat-no" title="statement not covered" >    if (!connectionName) <span class="cstat-no" title="statement not covered" >connectionName = collection.adapterDictionary.find;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    operations.push({</span>
+      connection: connectionName,
+      collection: this.context.identity,
+      method: this.parent,
+      criteria: this.criteria
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return operations;</span>
+  }
+&nbsp;
+  // Joins were used in this operation. Lets grab the connections needed for these queries. It may
+  // only be a single connection in a simple case or it could be multiple connections in some cases.
+<span class="cstat-no" title="statement not covered" >  var connections = this._getConnections();</span>
+&nbsp;
+  // Now that all the connections are created, build up operations needed to accomplish the end
+  // goal of getting all the results no matter which connection they are on. To do this,
+  // figure out if a connection supports joins and if so pass down a criteria object containing
+  // join instructions. If joins are not supported by a connection, build a series of operations
+  // to achieve the end result.
+<span class="cstat-no" title="statement not covered" >  operations = this._stageOperations(connections);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return operations;</span>
+};
+&nbsp;
+/**
+ * Stage Operation Sets
+ *
+ * @param {Object} connections
+ * @api private
+ */
+&nbsp;
+Operations.prototype._stageOperations = <span class="fstat-no" title="function not covered" >function _stageOperations(connections) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var operations = [];</span>
+&nbsp;
+  // Build the parent operation and set it as the first operation in the array
+<span class="cstat-no" title="statement not covered" >  operations = operations.concat(this._createParentOperation(connections));</span>
+&nbsp;
+  // Parent Connection Name
+<span class="cstat-no" title="statement not covered" >  var parentConnection = this.context.adapterDictionary[this.parent];</span>
+&nbsp;
+  // Parent Operation
+<span class="cstat-no" title="statement not covered" >  var parentOperation = operations[0];</span>
+&nbsp;
+  // For each additional connection build operations
+<span class="cstat-no" title="statement not covered" >  Object.keys(connections).forEach(<span class="fstat-no" title="function not covered" >function(connection) {</span></span>
+&nbsp;
+    // Ignore the connection used for the parent operation if a join can be used on it.
+    // This means all of the operations for the query can take place on a single connection
+    // using a single query.
+<span class="cstat-no" title="statement not covered" >    if (connection === parentConnection &amp;&amp; parentOperation.method === 'join') <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+    // Operations are needed that will be run after the parent operation has been completed.
+    // If there are more than a single join, set the parent join and build up children operations.
+    // This occurs in a many-to-many relationship when a join table is needed.
+&nbsp;
+    // Criteria is omitted until after the parent operation has been run so that an IN query can
+    // be formed on child operations.
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var localOpts = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    connections[connection].joins.forEach(<span class="fstat-no" title="function not covered" >function(join, idx) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var optCollection = self.context.waterline.collections[join.child];</span>
+<span class="cstat-no" title="statement not covered" >      var optConnectionName = optCollection.adapterDictionary['find'];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var operation = {</span>
+        connection: optConnectionName,
+        collection: join.child,
+        method: 'find',
+        join: join
+      };
+&nbsp;
+      // If this is the first join, it can't have any parents
+<span class="cstat-no" title="statement not covered" >      if (idx === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        localOpts.push(operation);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      // Look into the previous operations and see if this is a child of any of them
+<span class="cstat-no" title="statement not covered" >      var child = false;</span>
+<span class="cstat-no" title="statement not covered" >      localOpts.forEach(<span class="fstat-no" title="function not covered" >function(localOpt) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (localOpt.join.child != join.parent) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        localOpt.child = operation;</span>
+<span class="cstat-no" title="statement not covered" >        child = true;</span>
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (child) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >      localOpts.push(operation);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    operations = operations.concat(localOpts);</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return operations;</span>
+};
+&nbsp;
+/**
+ * Create The Parent Operation
+ *
+ * @param {Object} connections
+ * @return {Object}
+ * @api private
+ */
+&nbsp;
+Operations.prototype._createParentOperation = <span class="fstat-no" title="function not covered" >function _createParentOperation(connections) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var nativeJoin = this.context.adapter.hasJoin();</span>
+<span class="cstat-no" title="statement not covered" >  var operation,</span>
+      connectionName,
+      connection;
+&nbsp;
+  // If the parent supports native joins, check if all the joins on the connection can be
+  // run on the same connection and if so just send the entire criteria down to the connection.
+<span class="cstat-no" title="statement not covered" >  if (nativeJoin) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    connectionName = this.context.adapterDictionary.join;</span>
+<span class="cstat-no" title="statement not covered" >    connection = connections[connectionName];</span>
+&nbsp;
+    // Hold any joins that can't be run natively on this connection
+<span class="cstat-no" title="statement not covered" >    var unsupportedJoins = false;</span>
+&nbsp;
+    // Pull out any unsupported joins
+<span class="cstat-no" title="statement not covered" >    connection.joins.forEach(<span class="fstat-no" title="function not covered" >function(join) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (connection.collections.indexOf(join.child) &gt; -1) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >      unsupportedJoins = true;</span>
+    });
+&nbsp;
+    // If all the joins were supported then go ahead and build an operation.
+<span class="cstat-no" title="statement not covered" >    if (!unsupportedJoins) {</span>
+<span class="cstat-no" title="statement not covered" >      operation = [{</span>
+        connection: connectionName,
+        collection: this.context.identity,
+        method: 'join',
+        criteria: this.criteria
+      }];
+&nbsp;
+      // Set the preCombined flag
+<span class="cstat-no" title="statement not covered" >      this.preCombined = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return operation;</span>
+    }
+  }
+&nbsp;
+  // Remove the joins from the criteria object, this will be an in-memory join
+<span class="cstat-no" title="statement not covered" >  var tmpCriteria = _.cloneDeep(this.criteria);</span>
+<span class="cstat-no" title="statement not covered" >  delete tmpCriteria.joins;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  connectionName = this.context.adapterDictionary[this.parent];</span>
+&nbsp;
+  // If findOne was used, use the same connection `find` is on.
+<span class="cstat-no" title="statement not covered" >  if (this.parent === 'findOne' &amp;&amp; !connectionName) {</span>
+<span class="cstat-no" title="statement not covered" >    connectionName = this.context.adapterDictionary.find;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  connection = connections[connectionName];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  operation = [{</span>
+    connection: connectionName,
+    collection: this.context.identity,
+    method: this.parent,
+    criteria: tmpCriteria
+  }];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return operation;</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * Get the connections used in this query and the join logic for each piece.
+ *
+ * @return {Object}
+ * @api private
+ */
+&nbsp;
+Operations.prototype._getConnections = <span class="fstat-no" title="function not covered" >function _getConnections() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var connections = {};</span>
+&nbsp;
+  // Default structure for connection objects
+<span class="cstat-no" title="statement not covered" >  var defaultConnection = {</span>
+    collections: [],
+    children: [],
+    joins: []
+  };
+&nbsp;
+  // For each join build a connection item to build up an entire collection/connection registry
+  // for this query. Using this, queries should be able to be seperated into discrete queries
+  // which can be run on connections in parallel.
+<span class="cstat-no" title="statement not covered" >  this.criteria.joins.forEach(<span class="fstat-no" title="function not covered" >function(join) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var connection;</span>
+<span class="cstat-no" title="statement not covered" >    var parentConnection;</span>
+<span class="cstat-no" title="statement not covered" >    var childConnection;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getConnection(collName) {</span>
+<span class="cstat-no" title="statement not covered" >      var collection = self.context.waterline.collections[collName];</span>
+<span class="cstat-no" title="statement not covered" >      var connectionName = collection.adapterDictionary['find'];</span>
+<span class="cstat-no" title="statement not covered" >      connections[connectionName] = connections[connectionName] || _.cloneDeep(defaultConnection);</span>
+<span class="cstat-no" title="statement not covered" >      return connections[connectionName];</span>
+    }
+&nbsp;
+    // If this join is a junctionTable, find the parent operation and add it to that connections
+    // children instead of creating a new operation on another connection. This allows cross-connection
+    // many-to-many joins to be used where the join relies on the results of the parent operation
+    // being run first.
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (join.junctionTable) {</span>
+&nbsp;
+      // Find the previous join
+<span class="cstat-no" title="statement not covered" >      var parentJoin = _.find(self.criteria.joins, <span class="fstat-no" title="function not covered" >function(otherJoin) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return otherJoin.child == join.parent;</span>
+      });
+&nbsp;
+      // Grab the parent join connection
+<span class="cstat-no" title="statement not covered" >      var parentJoinConnection = getConnection(parentJoin.parent);</span>
+&nbsp;
+      // Find the connection the parent and child collections belongs to
+<span class="cstat-no" title="statement not covered" >      parentConnection = getConnection(join.parent);</span>
+<span class="cstat-no" title="statement not covered" >      childConnection = getConnection(join.child);</span>
+&nbsp;
+      // Update the registry
+<span class="cstat-no" title="statement not covered" >      parentConnection.collections.push(join.parent);</span>
+<span class="cstat-no" title="statement not covered" >      childConnection.collections.push(join.child);</span>
+<span class="cstat-no" title="statement not covered" >      parentConnection.children.push(join.parent);</span>
+&nbsp;
+      // Ensure the arrays are made up only of unique values
+<span class="cstat-no" title="statement not covered" >      parentConnection.collections = _.uniq(parentConnection.collections);</span>
+<span class="cstat-no" title="statement not covered" >      childConnection.collections = _.uniq(childConnection.collections);</span>
+<span class="cstat-no" title="statement not covered" >      parentConnection.children = _.uniq(parentConnection.children);</span>
+&nbsp;
+      // Add the join to the correct joins array. We want it to be on the same
+      // connection as the operation before so the timing is correct.
+<span class="cstat-no" title="statement not covered" >      parentJoinConnection.joins = parentJoinConnection.joins.concat(join);</span>
+&nbsp;
+    // Build up the connection registry like normal
+    } else {
+<span class="cstat-no" title="statement not covered" >      parentConnection = getConnection(join.parent);</span>
+<span class="cstat-no" title="statement not covered" >      childConnection = getConnection(join.child);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      parentConnection.collections.push(join.parent);</span>
+<span class="cstat-no" title="statement not covered" >      childConnection.collections.push(join.child);</span>
+<span class="cstat-no" title="statement not covered" >      parentConnection.joins = parentConnection.joins.concat(join);</span>
+    }
+&nbsp;
+  });
+<span class="cstat-no" title="statement not covered" >  return connections;</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * Run An Operation
+ *
+ * Performs an operation and runs a supplied callback.
+ *
+ * @param {Object} collectionName
+ * @param {String} method
+ * @param {Object} criteria
+ * @param {Function} cb
+ *
+ * @api private
+ */
+&nbsp;
+Operations.prototype._runOperation = <span class="fstat-no" title="function not covered" >function _runOperation(collectionName, method, criteria, cb) {</span>
+&nbsp;
+  // Ensure the collection exist
+<span class="cstat-no" title="statement not covered" >  if (!hasOwnProperty(this.context.waterline.collections, collectionName)) {</span>
+<span class="cstat-no" title="statement not covered" >    return cb(new Error('Invalid Collection specfied in operation.'));</span>
+  }
+&nbsp;
+  // Find the connection object to run the operation
+<span class="cstat-no" title="statement not covered" >  var collection = this.context.waterline.collections[collectionName];</span>
+&nbsp;
+  // Run the operation
+<span class="cstat-no" title="statement not covered" >  collection.adapter[method](criteria, cb);</span>
+&nbsp;
+};
+&nbsp;
+/**
+ * Execute Child Operations
+ *
+ * If joins are used and an adapter doesn't support them, there will be child operations that will
+ * need to be run. Parse each child operation and run them along with any tree joins and return
+ * an array of children results that can be combined with the parent results.
+ *
+ * @param {Array} parentResults
+ * @param {Function} cb
+ */
+&nbsp;
+Operations.prototype._execChildOpts = <span class="fstat-no" title="function not covered" >function _execChildOpts(parentResults, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+  // Build up a set of child operations that will need to be run
+  // based on the results returned from the parent operation.
+<span class="cstat-no" title="statement not covered" >  this._buildChildOpts(parentResults, <span class="fstat-no" title="function not covered" >function(err, opts) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+&nbsp;
+    // Run the generated operations in parallel
+<span class="cstat-no" title="statement not covered" >    async.each(opts, <span class="fstat-no" title="function not covered" >function(item, next) {</span></span>
+<span class="cstat-no" title="statement not covered" >      self._collectChildResults(item, next);</span>
+    }, cb);
+  });
+&nbsp;
+};
+&nbsp;
+/**
+ * Build Child Operations
+ *
+ * Using the results of a parent operation, build up a set of operations that contain criteria
+ * based on what is returned from a parent operation. These can be arrays containing more than
+ * one operation for each child, which will happen when "join tables" would be used.
+ *
+ * Each set should be able to be run in parallel.
+ *
+ * @param {Array} parentResults
+ * @param {Function} cb
+ * @return {Array}
+ * @api private
+ */
+&nbsp;
+Operations.prototype._buildChildOpts = <span class="fstat-no" title="function not covered" >function _buildChildOpts(parentResults, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var opts = [];</span>
+&nbsp;
+  // Build up operations that can be run in parallel using the results of the parent operation
+<span class="cstat-no" title="statement not covered" >  async.each(this.operations, <span class="fstat-no" title="function not covered" >function(item, next) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var localOpts = [];</span>
+<span class="cstat-no" title="statement not covered" >    var parents = [];</span>
+<span class="cstat-no" title="statement not covered" >    var idx = 0;</span>
+&nbsp;
+    // Go through all the parent records and build up an array of keys to look in. This
+    // will be used in an IN query to grab all the records needed for the "join".
+<span class="cstat-no" title="statement not covered" >    parentResults.forEach(<span class="fstat-no" title="function not covered" >function(result) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!hasOwnProperty(result, item.join.parentKey)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >      if (result[item.join.parentKey] === null || typeof result[item.join.parentKey] === undefined) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >      parents.push(result[item.join.parentKey]);</span>
+&nbsp;
+    });
+&nbsp;
+    // If no parents match the join criteria, don't build up an operation
+<span class="cstat-no" title="statement not covered" >    if (parents.length === 0) <span class="cstat-no" title="statement not covered" >return next();</span></span>
+&nbsp;
+    // Build up criteria that will be used inside an IN query
+<span class="cstat-no" title="statement not covered" >    var criteria = {};</span>
+<span class="cstat-no" title="statement not covered" >    criteria[item.join.childKey] = parents;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var _tmpCriteria = {};</span>
+&nbsp;
+    // Check if the join contains any criteria
+<span class="cstat-no" title="statement not covered" >    if (item.join.criteria) {</span>
+<span class="cstat-no" title="statement not covered" >      var userCriteria = _.cloneDeep(item.join.criteria);</span>
+<span class="cstat-no" title="statement not covered" >      _tmpCriteria = _.cloneDeep(userCriteria);</span>
+<span class="cstat-no" title="statement not covered" >      _tmpCriteria = normalize.criteria(_tmpCriteria);</span>
+&nbsp;
+      // Ensure `where` criteria is properly formatted
+<span class="cstat-no" title="statement not covered" >      if (hasOwnProperty(userCriteria, 'where')) {</span>
+<span class="cstat-no" title="statement not covered" >        if (userCriteria.where === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >          delete userCriteria.where;</span>
+        } else {
+&nbsp;
+          // If an array of primary keys was passed in, normalize the criteria
+<span class="cstat-no" title="statement not covered" >          if (Array.isArray(userCriteria.where)) {</span>
+<span class="cstat-no" title="statement not covered" >            var pk = self.context.waterline.collections[item.join.child].primaryKey;</span>
+<span class="cstat-no" title="statement not covered" >            var obj = {};</span>
+<span class="cstat-no" title="statement not covered" >            obj[pk] = _.clone(userCriteria.where);</span>
+<span class="cstat-no" title="statement not covered" >            userCriteria.where = obj;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          userCriteria = userCriteria.where;</span>
+        }
+      }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      criteria = _.merge(userCriteria, criteria);</span>
+    }
+&nbsp;
+    // Normalize criteria
+<span class="cstat-no" title="statement not covered" >    criteria = normalize.criteria(criteria);</span>
+&nbsp;
+    // If criteria contains a skip or limit option, an operation will be needed for each parent.
+<span class="cstat-no" title="statement not covered" >    if (hasOwnProperty(_tmpCriteria, 'skip') || hasOwnProperty(_tmpCriteria, 'limit')) {</span>
+<span class="cstat-no" title="statement not covered" >      parents.forEach(<span class="fstat-no" title="function not covered" >function(parent) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var tmpCriteria = _.cloneDeep(criteria);</span>
+<span class="cstat-no" title="statement not covered" >        tmpCriteria.where[item.join.childKey] = parent;</span>
+&nbsp;
+        // Mixin the user defined skip and limit
+<span class="cstat-no" title="statement not covered" >        if (hasOwnProperty(_tmpCriteria, 'skip')) <span class="cstat-no" title="statement not covered" >tmpCriteria.skip = _tmpCriteria.skip;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (hasOwnProperty(_tmpCriteria, 'limit')) <span class="cstat-no" title="statement not covered" >tmpCriteria.limit = _tmpCriteria.limit;</span></span>
+&nbsp;
+        // Build a simple operation to run with criteria from the parent results.
+        // Give it an ID so that children operations can reference it if needed.
+<span class="cstat-no" title="statement not covered" >        localOpts.push({</span>
+          id: idx,
+          collection: item.collection,
+          method: item.method,
+          criteria: tmpCriteria,
+          join: item.join
+        });
+&nbsp;
+      });
+    } else {
+&nbsp;
+      // Build a simple operation to run with criteria from the parent results.
+      // Give it an ID so that children operations can reference it if needed.
+<span class="cstat-no" title="statement not covered" >      localOpts.push({</span>
+        id: idx,
+        collection: item.collection,
+        method: item.method,
+        criteria: criteria,
+        join: item.join
+      });
+&nbsp;
+    }
+&nbsp;
+    // If there are child records, add the opt but don't add the criteria
+<span class="cstat-no" title="statement not covered" >    if (!item.child) {</span>
+<span class="cstat-no" title="statement not covered" >      opts.push(localOpts);</span>
+<span class="cstat-no" title="statement not covered" >      return next();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    localOpts.push({</span>
+      collection: item.child.collection,
+      method: item.child.method,
+      parent: idx,
+      join: item.child.join
+    });
+&nbsp;
+    // Add the local opt to the opts array
+<span class="cstat-no" title="statement not covered" >    opts.push(localOpts);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    next();</span>
+  }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >    cb(err, opts);</span>
+  });
+};
+&nbsp;
+/**
+ * Collect Child Operation Results
+ *
+ * Run a set of child operations and return the results in a namespaced array
+ * that can later be used to do an in-memory join.
+ *
+ * @param {Array} opts
+ * @param {Function} cb
+ * @api private
+ */
+&nbsp;
+Operations.prototype._collectChildResults = <span class="fstat-no" title="function not covered" >function _collectChildResults(opts, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var intermediateResults = [];</span>
+<span class="cstat-no" title="statement not covered" >  var i = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!opts || opts.length === 0) <span class="cstat-no" title="statement not covered" >return cb(null, {});</span></span>
+&nbsp;
+  // Run the operations and any child operations in series so that each can access the
+  // results of the previous operation.
+<span class="cstat-no" title="statement not covered" >  async.eachSeries(opts, <span class="fstat-no" title="function not covered" >function(opt, next) {</span></span>
+<span class="cstat-no" title="statement not covered" >    self._runChildOperations(intermediateResults, opt, <span class="fstat-no" title="function not covered" >function(err, values) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return next(err);</span></span>
+&nbsp;
+      // If there are multiple operations and we are on the first one lets put the results
+      // into an intermediate results array
+<span class="cstat-no" title="statement not covered" >      if (opts.length &gt; 1 &amp;&amp; i === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        intermediateResults = intermediateResults.concat(values);</span>
+      }
+&nbsp;
+      // Add values to the cache key
+<span class="cstat-no" title="statement not covered" >      self.cache[opt.collection] = self.cache[opt.collection] || [];</span>
+<span class="cstat-no" title="statement not covered" >      self.cache[opt.collection] = self.cache[opt.collection].concat(values);</span>
+&nbsp;
+      // Ensure the values are unique
+<span class="cstat-no" title="statement not covered" >      var pk = self._findCollectionPK(opt.collection);</span>
+<span class="cstat-no" title="statement not covered" >      self.cache[opt.collection] = _.uniq(self.cache[opt.collection], pk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      i++;</span>
+<span class="cstat-no" title="statement not covered" >      next();</span>
+    });
+  }, cb);
+&nbsp;
+};
+&nbsp;
+/**
+ * Run A Child Operation
+ *
+ * Executes a child operation and appends the results as a namespaced object to the
+ * main operation results object.
+ *
+ * @param {Object} optResults
+ * @param {Object} opt
+ * @param {Function} callback
+ * @api private
+ */
+&nbsp;
+Operations.prototype._runChildOperations = <span class="fstat-no" title="function not covered" >function _runChildOperations(intermediateResults, opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+&nbsp;
+  // Check if value has a parent, if so a join table was used and we need to build up dictionary
+  // values that can be used to join the parent and the children together.
+&nbsp;
+  // If the operation doesn't have a parent operation run it
+<span class="cstat-no" title="statement not covered" >  if (!hasOwnProperty(opt, 'parent')) {</span>
+<span class="cstat-no" title="statement not covered" >    return self._runOperation(opt.collection, opt.method, opt.criteria, <span class="fstat-no" title="function not covered" >function(err, values) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(null, values);</span>
+    });
+  }
+&nbsp;
+  // If the operation has a parent, look into the optResults and build up a criteria
+  // object using the results of a previous operation
+<span class="cstat-no" title="statement not covered" >  var parents = [];</span>
+&nbsp;
+  // Normalize to array
+<span class="cstat-no" title="statement not covered" >  var res = _.cloneDeep(intermediateResults);</span>
+&nbsp;
+  // Build criteria that can be used with an `in` query
+<span class="cstat-no" title="statement not covered" >  res.forEach(<span class="fstat-no" title="function not covered" >function(result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    parents.push(result[opt.join.parentKey]);</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var criteria = {};</span>
+<span class="cstat-no" title="statement not covered" >  criteria[opt.join.childKey] = parents;</span>
+&nbsp;
+  // Check if the join contains any criteria
+<span class="cstat-no" title="statement not covered" >  if (opt.join.criteria) {</span>
+<span class="cstat-no" title="statement not covered" >    var userCriteria = _.cloneDeep(opt.join.criteria);</span>
+&nbsp;
+    // Ensure `where` criteria is properly formatted
+<span class="cstat-no" title="statement not covered" >    if (hasOwnProperty(userCriteria, 'where')) {</span>
+<span class="cstat-no" title="statement not covered" >      if (userCriteria.where === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        delete userCriteria.where;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        userCriteria = userCriteria.where;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    delete userCriteria.sort;</span>
+<span class="cstat-no" title="statement not covered" >    criteria = _.extend(criteria, userCriteria);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  criteria = normalize.criteria({ where: criteria });</span>
+&nbsp;
+  // Empty the cache for the join table so we can only add values used
+<span class="cstat-no" title="statement not covered" >  var cacheCopy = _.cloneDeep(self.cache[opt.join.parent]);</span>
+<span class="cstat-no" title="statement not covered" >  self.cache[opt.join.parent] = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  self._runOperation(opt.collection, opt.method, criteria, <span class="fstat-no" title="function not covered" >function(err, values) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+&nbsp;
+    // Build up the new join table result
+<span class="cstat-no" title="statement not covered" >    values.forEach(<span class="fstat-no" title="function not covered" >function(val) {</span></span>
+<span class="cstat-no" title="statement not covered" >      cacheCopy.forEach(<span class="fstat-no" title="function not covered" >function(copy) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (copy[opt.join.parentKey] === val[opt.join.childKey]) <span class="cstat-no" title="statement not covered" >self.cache[opt.join.parent].push(copy);</span></span>
+      });
+    });
+&nbsp;
+    // Ensure the values are unique
+<span class="cstat-no" title="statement not covered" >    var pk = self._findCollectionPK(opt.join.parent);</span>
+<span class="cstat-no" title="statement not covered" >    self.cache[opt.join.parent] = _.uniq(self.cache[opt.join.parent], pk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cb(null, values);</span>
+  });
+};
+&nbsp;
+/**
+ * Find A Collection's Primary Key
+ *
+ * @param {String} collectionName
+ * @api private
+ * @return {String}
+ */
+&nbsp;
+Operations.prototype._findCollectionPK = <span class="fstat-no" title="function not covered" >function _findCollectionPK(collectionName) {</span>
+<span class="cstat-no" title="statement not covered" >  var pk;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var attribute in this.context.waterline.collections[collectionName]._attributes) {</span>
+<span class="cstat-no" title="statement not covered" >    var attr = this.context.waterline.collections[collectionName]._attributes[attribute];</span>
+<span class="cstat-no" title="statement not covered" >    if (hasOwnProperty(attr, 'primaryKey') &amp;&amp; attr.primaryKey) {</span>
+<span class="cstat-no" title="statement not covered" >      pk = attr.columnName || attribute;</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return pk || null;</span>
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 11:15:50 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
