@@ -1,4 +1,7 @@
-# test coverage for  [waterline (v0.11.11)](http://waterlinejs.org)  [![npm package](https://img.shields.io/npm/v/npmtest-waterline.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-waterline) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-waterline.svg)](https://travis-ci.org/npmtest/node-npmtest-waterline)
+# npmtest-waterline
+
+#### test coverage for  [waterline (v0.11.11)](http://waterlinejs.org)  [![npm package](https://img.shields.io/npm/v/npmtest-waterline.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-waterline) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-waterline.svg)](https://travis-ci.org/npmtest/node-npmtest-waterline)
+
 #### An ORM for Node.js and the Sails framework.
 
 [![NPM](https://nodei.co/npm/waterline.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/waterline)
